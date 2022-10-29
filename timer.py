@@ -2,17 +2,27 @@ import schedule
 from time import sleep
 import datetime
 import pytz
+from playsound import playsound
 
 #01 定期実行する関数を準備
-def task():
+def forty():
     # 今の時間を取得
     now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
-    print(now)
-#02 スケジュール登録
-# 毎時間指定分に実行
-# schedule.every().hour.at(":33").do(task)
+    print(f'今の時間は{now}です！10分前です!')
+    playsound("「やっほー」.mp3")
+
+def fifty():
+    now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
+    print(f'今は{now}です！カジノしていただきありがとうございました!')
+    playsound("「さようなら」.mp3")
+
+
+# 40分になったらfortyの実行
+schedule.every().hour.at(":07").do(forty)
+# 50分になったらfiftyの実行
+schedule.every().hour.at(":08").do(fifty)
 # 数秒ごとに実装
-schedule.every(10).seconds.do(task)
+# schedule.every(10).seconds.do(forty)
 
 #03 イベント実行
 while True:
